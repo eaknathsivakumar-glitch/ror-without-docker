@@ -2,6 +2,9 @@ revolte:
   version: '1.0'
   project: May14
   appName: ror-without-docker
+  workflow:
+    developerWorkflow:
+      enabled: true
   env:
     staging:
       branch: staging
@@ -9,7 +12,7 @@ revolte:
         rid_1:
           type: WEB_SERVICE
           name: web_service
-          entryPoint: bin/rails server
+          entryPoint: rails server
           properties:
             health: /health
             port: 8080
@@ -26,7 +29,7 @@ revolte:
         rid_1:
           type: WEB_SERVICE
           name: web_service
-          entryPoint: bin/rails server
+          entryPoint: rails server
           properties:
             health: /health
             port: 8080
@@ -43,7 +46,7 @@ revolte:
         rid_1:
           type: WEB_SERVICE
           name: web_service
-          entryPoint: bin/rails server
+          entryPoint: rails server
           properties:
             health: /health
             port: 8080
