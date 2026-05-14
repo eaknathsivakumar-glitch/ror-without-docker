@@ -1,0 +1,58 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore all environment files (except templates).
+/.env*
+!/.env*.erb
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+!/tmp/pids/
+!/tmp/pids/.keep
+!/tmp/storage/
+!/tmp/storage/.keep
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/.keep
+
+# Ignore storage (uploaded files in development and any SQLite databases).
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/.keep
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+/config/credentials/*.key
+
+# Ignore SQLite databases.
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore node modules.
+/node_modules
+
+# Ignore yarn files.
+/yarn-error.log
+.yarn-integrity
+
+# Ignore coverage reports.
+/coverage
+
+# Ignore macOS metadata.
+.DS_Store
+
+# Ignore editor files.
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
