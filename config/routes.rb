@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # Built-in Rails health check (returns 200 if app boots without exceptions)
   get "up" => "rails/health#show", as: :rails_health_check
 
+  # Top-level health check
+  get "health", to: "health#show"
+
   # Custom health check with JSON response
   namespace :api do
     namespace :v1 do
