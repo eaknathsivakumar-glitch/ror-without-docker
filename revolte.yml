@@ -2,64 +2,98 @@ revolte:
   version: '1.0'
   project: May-19
   appName: ror-without-docker
+  config:
+    codeReview:
+      summarize: true
+      suggestFixes: true
+      commentStyle: Balanced
+    testSuite:
+      command: npm run test
+    automationTestSuite:
+      command: npm run test:automation
   workflow:
     developerWorkflow:
       enabled: true
   env:
     staging:
-      branch: staging
+      branch: main
+      codeReview: true
+      testSuite: true
+      automationTestSuite: true
       services:
         rid_1:
           type: WEB_SERVICE
           name: web_service
-          entryPoint: rails server
+          entryPoint: index.js
           properties:
             health: /health
             port: 8080
             loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
           specifications:
             cpu: 2
             memory: 1
             storage: 30
+        rid_2:
+          type: STORAGE_BUCKET
+          name: storage_bucket_service
+          configurations:
+            bucketName: eaksample
+            versioningStatus: enabled
+            public: false
     qa:
       branch: develop
+      codeReview: true
+      testSuite: true
+      automationTestSuite: true
       services:
         rid_1:
           type: WEB_SERVICE
           name: web_service
-          entryPoint: rails server
+          entryPoint: index.js
           properties:
             health: /health
             port: 8080
             loadBalancerMode: dedicated
             variables:
-              RAILS_ENV: development
-              RAILS_LOG_LEVEL: info
-              PORT: '8080'
-              ALLOWED_ORIGINS: '*'
-              WEB_CONCURRENCY: '2'
-              RAILS_MAX_THREADS: '3'
               BASE_URL: /api/v1
-              RAILS_MASTER_KEY: '#{RAILS_MASTER_KEY}'
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
           specifications:
             cpu: 2
             memory: 1
             storage: 30
+        rid_2:
+          type: STORAGE_BUCKET
+          name: bucket_service
+          configurations:
+            bucketName: eaksample
+            versioningStatus: enabled
+            public: false
     production:
       branch: main
+      codeReview: true
+      testSuite: true
+      automationTestSuite: true
       services:
         rid_1:
           type: WEB_SERVICE
           name: web_service
-          entryPoint: rails server
+          entryPoint: index.js
           properties:
             health: /health
             port: 8080
             loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
           specifications:
             cpu: 2
             memory: 1
@@ -76,7 +110,17 @@ revolte:
               behavior:
                 scaleDown:
                   stabilizationWindow: 300
+        rid_2:
+          type: STORAGE_BUCKET
+          name: storage_bucket_service
+          configurations:
+            bucketName: eaksample
+            versioningStatus: enabled
+            public: false
     preview:
+      codeReview: true
+      testSuite: true
+      automationTestSuite: true
       services:
         rid_1:
           type: WEB_SERVICE
@@ -88,7 +132,17 @@ revolte:
             loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
           specifications:
             cpu: 2
             memory: 1
             storage: 30
+        rid_2:
+          type: STORAGE_BUCKET
+          name: storage_bucket_service
+          configurations:
+            bucketName: eaksample
+            versioningStatus: enabled
+            public: false
