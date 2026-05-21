@@ -29,7 +29,7 @@ revolte:
         rid_1:
           type: WEB_SERVICE
           name: web_service
-          entryPoint: bundle exec rails server
+          entryPoint: rails server
           properties:
             health: /health
             port: 8080
@@ -39,10 +39,10 @@ revolte:
               RAILS_LOG_LEVEL: info
               PORT: '8080'
               ALLOWED_ORIGINS: '*'
-              ALLOWED_HOSTS: ''
               WEB_CONCURRENCY: '2'
               RAILS_MAX_THREADS: '3'
               BASE_URL: /api/v1
+              RAILS_MASTER_KEY: '#{RAILS_MASTER_KEY}'
           specifications:
             cpu: 2
             memory: 1
