@@ -63,7 +63,7 @@ revolte:
             storage: 30
         rid_3:
           type: STORAGE_BUCKET
-          name: bucket_service
+          name: storage_bucket_service
           configurations:
             bucketName: eaksample-q
             versioningStatus: enabled
