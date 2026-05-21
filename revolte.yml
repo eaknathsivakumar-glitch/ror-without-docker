@@ -36,7 +36,7 @@ revolte:
           type: STORAGE_BUCKET
           name: storage_bucket_service
           configurations:
-            bucketName: eaksample
+            bucketName: eaksample-qa
             versioningStatus: enabled
             public: false
     qa:
@@ -63,9 +63,9 @@ revolte:
             storage: 30
         rid_2:
           type: STORAGE_BUCKET
-          name: bucket_service
+          name: storage_bucket_service
           configurations:
-            bucketName: eaksample
+            bucketName: eaksample-uat
             versioningStatus: enabled
             public: false
     production:
@@ -98,7 +98,7 @@ revolte:
           type: STORAGE_BUCKET
           name: storage_bucket_service
           configurations:
-            bucketName: eaksample
+            bucketName: eaksample-prod
             versioningStatus: enabled
             public: false
     preview:
