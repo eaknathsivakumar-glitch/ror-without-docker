@@ -11,7 +11,7 @@ revolte:
       command: npm run test
   env:
     staging:
-      branch: main
+      branch: develop
       codeReview: true
       testSuite: true
       services:
@@ -25,6 +25,11 @@ revolte:
             loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
+              DATABASE_URL: '#{db.dbUrl}'
+              DATABASE_PORT: '#{db.dbPort}'
+              DATABASE_USERNAME: '#{db.dbUsername}'
+              DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
               ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
               SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
               REGION: '#{storage_bucket_service.region}'
@@ -33,10 +38,18 @@ revolte:
             memory: 1
             storage: 30
         rid_2:
+          type: DATABASE
+          name: db
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+            engine: postgres
+        rid_3:
           type: STORAGE_BUCKET
           name: storage_bucket_service
           configurations:
-            bucketName: eaksample-qa
+            bucketName: eaksampleuat
             versioningStatus: enabled
             public: false
     qa:
@@ -54,6 +67,11 @@ revolte:
             loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
+              DATABASE_URL: '#{db.dbUrl}'
+              DATABASE_PORT: '#{db.dbPort}'
+              DATABASE_USERNAME: '#{db.dbUsername}'
+              DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
               ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
               SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
               REGION: '#{storage_bucket_service.region}'
@@ -62,14 +80,22 @@ revolte:
             memory: 1
             storage: 30
         rid_2:
+          type: DATABASE
+          name: db
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+            engine: postgres
+        rid_3:
           type: STORAGE_BUCKET
           name: storage_bucket_service
           configurations:
-            bucketName: eaksample-uat
+            bucketName: eaksampleqq
             versioningStatus: enabled
             public: false
     production:
-      branch: main
+      branch: develop
       codeReview: true
       testSuite: true
       services:
@@ -83,6 +109,11 @@ revolte:
             loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
+              DATABASE_URL: '#{db.dbUrl}'
+              DATABASE_PORT: '#{db.dbPort}'
+              DATABASE_USERNAME: '#{db.dbUsername}'
+              DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
               ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
               SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
               REGION: '#{storage_bucket_service.region}'
@@ -95,10 +126,18 @@ revolte:
                 min: 1
                 max: 1
         rid_2:
+          type: DATABASE
+          name: db
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+            engine: postgres
+        rid_3:
           type: STORAGE_BUCKET
           name: storage_bucket_service
           configurations:
-            bucketName: eaksample-prod
+            bucketName: eaksampleprod
             versioningStatus: enabled
             public: false
     preview:
@@ -115,6 +154,11 @@ revolte:
             loadBalancerMode: dedicated
             variables:
               BASE_URL: /api/v1
+              DATABASE_URL: '#{db.dbUrl}'
+              DATABASE_PORT: '#{db.dbPort}'
+              DATABASE_USERNAME: '#{db.dbUsername}'
+              DATABASE_PASSWORD: '#{db.dbPassword}'
+              DATABASE_NAME: '#{db.dbName}'
               ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
               SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
               REGION: '#{storage_bucket_service.region}'
@@ -123,6 +167,14 @@ revolte:
             memory: 1
             storage: 30
         rid_2:
+          type: DATABASE
+          name: db
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+            engine: postgres
+        rid_3:
           type: STORAGE_BUCKET
           name: storage_bucket_service
           configurations:
