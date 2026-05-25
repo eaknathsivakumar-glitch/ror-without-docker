@@ -49,18 +49,13 @@ revolte:
             health: /health
             port: 8080
             loadBalancerMode: dedicated
-            variables:
-              BASE_URL: /api/v1
-              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
-              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
-              REGION: '#{storage_bucket_service.region}'
           specifications:
             cpu: 2
             memory: 1
             storage: 30
         rid_3:
           type: STORAGE_BUCKET
-          name: bucket_service
+          name: storage_bucket_service
           configurations:
             bucketName: eaksample-qssh
             versioningStatus: enabled
