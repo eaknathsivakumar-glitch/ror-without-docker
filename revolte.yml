@@ -1,7 +1,7 @@
 revolte:
   version: '1.0'
-  project: My-Awesome-Project
-  appName: testCB
+  project: test1
+  appName: test2
   config:
     codeReview:
       summarize: true
@@ -9,6 +9,9 @@ revolte:
       commentStyle: Balanced
     testSuite:
       command: npm run test
+  workflow:
+    developerWorkflow:
+      enabled: true
   env:
     staging:
       branch: main
@@ -49,6 +52,11 @@ revolte:
             health: /health
             port: 8080
             loadBalancerMode: dedicated
+            variables:
+              BASE_URL: /api/v1
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
           specifications:
             cpu: 2
             memory: 1
@@ -86,6 +94,14 @@ revolte:
               replica:
                 min: 1
                 max: 3
+              utilization:
+                cpu:
+                  target: 70
+                memory:
+                  target: 70
+              behavior:
+                scaleDown:
+                  stabilizationWindow: 300
         rid_3:
           type: STORAGE_BUCKET
           name: storage_bucket_service
